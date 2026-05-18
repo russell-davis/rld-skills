@@ -28,7 +28,3 @@ Interview the user about every aspect of their plan until you reach a shared und
 ## When to stop
 
 Stop when every decision branch has been resolved and the user isn't surfacing new concerns. Summarize the resolved decisions as a numbered list so there's a clear record of what was agreed.
-
----
-
-*Adapted from [mattpocock/skills/grill-me](https://github.com/mattpocock/skills/tree/main/grill-me) (MIT). Expanded with explicit probe categories and a stop condition.*

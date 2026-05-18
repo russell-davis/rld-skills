@@ -94,7 +94,3 @@ A description of the things that are out of scope for this PRD.
 Any further notes about the feature.
 
 </prd-template>
-
----
-
-*Adapted from [mattpocock/skills/to-prd](https://github.com/mattpocock/skills/tree/main/to-prd) (MIT). Inverts the "don't interview" rule — folds in a `grill-me`-style interview step — and supports non-GitHub targets (`.prd/` directory, other trackers).*
