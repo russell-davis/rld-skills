@@ -1,0 +1,7 @@
+{
+  "name": "@rld/tools",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
