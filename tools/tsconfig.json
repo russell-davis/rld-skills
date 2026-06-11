@@ -21,8 +21,7 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false,
 
-    "types": ["bun"],
-    "typeRoots": ["/home/rld/Work/claude-tools/node_modules/@types"]
+    "types": ["bun"]
   },
   "include": ["./**/*.ts"]
 }
