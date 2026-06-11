@@ -1,0 +1,14 @@
+{
+  "name": "@rld/claude-search",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
+  "bin": {
+    "claude-searcher": "./index.ts"
+  },
+  "scripts": {
+    "start": "bun run index.ts",
+    "test": "bun test"
+  }
+}
