@@ -132,7 +132,7 @@ CMD ["bun", "run", "./dist/server/entry.mjs"]
 
 ## Homelab Deployment
 
-rld's homelab uses Docker Compose with remote context.
+A homelab deployment can use Docker Compose with a remote context.
 
 ### docker-compose.yml (production)
 
