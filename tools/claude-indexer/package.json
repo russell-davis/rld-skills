@@ -1,0 +1,10 @@
+{
+  "name": "@rld/claude-indexer",
+  "private": true,
+  "bin": {
+    "claude-session-indexer": "./index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
