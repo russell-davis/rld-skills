@@ -13,6 +13,7 @@ interface Options {
   dryRun: boolean;
   verbose: boolean;
   limit: number;
+  force: boolean;
 }
 
 function usage(): never {
@@ -24,6 +25,7 @@ Options:
   --dry-run       Show what would be processed without writing files
   --verbose       Show progress for each session
   --limit N       Process at most N sessions (0 = unlimited)
+  --force         Re-index every session, ignoring the up-to-date check
   -h, --help      Show this help
 
 Output: ~/.local/share/claude-sessions/YYYY-MM-DD_XXXXXXXX.md`);
@@ -97,6 +99,7 @@ async function main() {
       "dry-run": { type: "boolean", default: false },
       verbose: { type: "boolean", default: false },
       limit: { type: "string", default: "0" },
+      force: { type: "boolean", default: false },
     },
   });
 
@@ -106,6 +109,7 @@ async function main() {
     dryRun: values["dry-run"] ?? false,
     verbose: values.verbose ?? false,
     limit: parseInt(values.limit ?? "0", 10),
+    force: values.force ?? false,
   };
 
   await mkdir(OUTPUT_DIR, { recursive: true });
@@ -162,7 +166,7 @@ async function main() {
     const outName = outputFilename(meta.date, meta.sessionId);
     const existingTs = existing.get(outName);
 
-    if (existingTs === meta.lastTimestamp) {
+    if (!opts.force && existingTs === meta.lastTimestamp) {
       log(opts, `  Skip: up to date (${outName})`);
       skipReasons.upToDate++;
       continue;
