@@ -1,0 +1,6 @@
+{"type":"user","message":{"role":"user","content":"hello"},"sessionId":"abc","uuid":"1","timestamp":"2026-01-01T00:00:00Z"}
+{"type":"ai-title","aiTitle":"First Title","sessionId":"abc"}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"hi"}]},"sessionId":"abc","uuid":"2","timestamp":"2026-01-01T00:00:01Z"}
+{"type":"ai-title","aiTitle":"Second Title","sessionId":"abc"}
+{"type":"user","message":{"role":"user","content":"bye"},"sessionId":"abc","uuid":"3","timestamp":"2026-01-01T00:00:02Z"}
+{"type":"ai-title","aiTitle":"Final Title","sessionId":"abc"}
