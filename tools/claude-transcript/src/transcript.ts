@@ -94,8 +94,11 @@ export function transcribeLines(
     if (record.type === "system") {
       const sys = record as SystemRecord;
       if (sys.subtype === "away_summary" && sys.content) {
-        const summary = sys.content.replace(/\n+/g, " ").trim();
-        output.push(`[away] ${summary}`);
+        const summary = sys.content
+          .replace(/\n+/g, " ")
+          .replace(/ \(disable recaps in \/config\)$/, "")
+          .trim();
+        output.push(`[recap] ${summary}`);
       }
       continue;
     }

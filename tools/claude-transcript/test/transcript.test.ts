@@ -118,9 +118,26 @@ describe("transcribeLines", () => {
     ];
     const result = transcribeLines(lines, null, opts);
     expect(result[0]).toBe("U: What next?");
-    expect(result[1]).toContain("[away]");
+    expect(result[1]).toContain("[recap]");
     expect(result[1]).toContain("verify output");
     expect(result[2]).toBe("A: Deploy completed.");
+  });
+
+  test("away_summary strips trailing footer suffix", () => {
+    const lines = [
+      systemLine("away_summary", "Ran deploy. Next: check output. (disable recaps in /config)"),
+    ];
+    const result = transcribeLines(lines, null, opts);
+    expect(result[0]).toBe("[recap] Ran deploy. Next: check output.");
+    expect(result[0]).not.toContain("disable recaps");
+  });
+
+  test("away_summary footer strip does not affect mid-sentence mention", () => {
+    const lines = [
+      systemLine("away_summary", "Mentioned (disable recaps in /config) mid-sentence. Done."),
+    ];
+    const result = transcribeLines(lines, null, opts);
+    expect(result[0]).toContain("disable recaps in /config");
   });
 
   test("away_summary with multiline content collapses to single line", () => {
@@ -130,7 +147,7 @@ describe("transcribeLines", () => {
     const result = transcribeLines(lines, null, opts);
     expect(result).toHaveLength(1);
     expect(result[0]).not.toContain("\n");
-    expect(result[0]).toContain("[away]");
+    expect(result[0]).toContain("[recap]");
   });
 
   test("ignores non-away_summary system records", () => {

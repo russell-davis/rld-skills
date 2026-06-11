@@ -27,7 +27,7 @@ Output format:
   A[think]: reasoning... (if --include-thinking)
   Agent (Type): task description...
     ↳ output summary (if --subagents)
-  [away] context summary (from away_summary records)
+  [recap] context summary (from away_summary records)
   [compacted: earlier turns discarded] (when session was compacted)
   [forked session] (when session was forked)
 
