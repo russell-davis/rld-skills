@@ -1,0 +1,14 @@
+{
+  "name": "@rld/claude-transcript",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
+  "bin": {
+    "claude-transcript": "./index.ts"
+  },
+  "scripts": {
+    "start": "bun run index.ts",
+    "test": "bun test"
+  }
+}
