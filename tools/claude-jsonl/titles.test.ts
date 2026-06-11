@@ -30,30 +30,35 @@ test("lastAiTitle: returns null for empty records", () => {
   expect(lastAiTitle([])).toBeNull();
 });
 
-test("fallbackTitle: strips -home-rld-Work- prefix and converts dashes to slashes", () => {
-  const path = "/home/rld/.claude/projects/-home-rld-Work-my-project/abc123.jsonl";
+test("fallbackTitle: strips -home-<user>-Work- prefix and converts dashes to slashes", () => {
+  const path = "/home/user/.claude/projects/-home-user-Work-my-project/abc123.jsonl";
   const title = fallbackTitle(path);
   expect(title).toBe("my/project");
 });
 
-test("fallbackTitle: strips -home-rld- prefix", () => {
-  const path = "/home/rld/.claude/projects/-home-rld-dotfiles/abc123.jsonl";
+test("fallbackTitle: strips -home-<user>- prefix", () => {
+  const path = "/home/user/.claude/projects/-home-user-dotfiles/abc123.jsonl";
   const title = fallbackTitle(path);
   expect(title).toBe("dotfiles");
 });
 
+test("fallbackTitle: works for any username, not a hardcoded one", () => {
+  expect(fallbackTitle("/home/alice/.claude/projects/-home-alice-Work-api/x.jsonl")).toBe("api");
+  expect(fallbackTitle("/home/bob/.claude/projects/-home-bob-dotfiles/x.jsonl")).toBe("dotfiles");
+});
+
 test("fallbackTitle: handles plain project dir name without known prefix", () => {
-  const path = "/home/rld/.claude/projects/some-project/abc123.jsonl";
+  const path = "/home/user/.claude/projects/some-project/abc123.jsonl";
   const title = fallbackTitle(path);
   expect(title.length).toBeGreaterThan(0);
 });
 
 test("fallbackTitle: never returns empty string", () => {
   const paths = [
-    "/home/rld/.claude/projects/-home-rld-Work-my-project/abc.jsonl",
+    "/home/user/.claude/projects/-home-user-Work-my-project/abc.jsonl",
     "/tmp/session.jsonl",
     "/a/b.jsonl",
-    "/home/rld/.claude/projects/-home-rld-/abc.jsonl",
+    "/home/user/.claude/projects/-home-user-/abc.jsonl",
   ];
   for (const p of paths) {
     const result = fallbackTitle(p);
@@ -63,14 +68,14 @@ test("fallbackTitle: never returns empty string", () => {
 
 test("titleForFile: uses ai-title when present", () => {
   const records = loadRecords("ai-title-last-wins.jsonl");
-  const path = "/home/rld/.claude/projects/-home-rld-Work-rld-skills/abc.jsonl";
+  const path = "/home/user/.claude/projects/-home-user-Work-my-app/abc.jsonl";
   expect(titleForFile(path, records)).toBe("Final Title");
 });
 
 test("titleForFile: falls back to path-derived title when no ai-title", () => {
   const records = loadRecords("no-title.jsonl");
-  const path = "/home/rld/.claude/projects/-home-rld-Work-rld-skills/abc.jsonl";
+  const path = "/home/user/.claude/projects/-home-user-Work-my-app/abc.jsonl";
   const title = titleForFile(path, records);
   expect(title.length).toBeGreaterThan(0);
-  expect(title).toBe("rld/skills");
+  expect(title).toBe("my/app");
 });

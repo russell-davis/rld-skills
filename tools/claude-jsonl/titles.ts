@@ -15,8 +15,8 @@ export function fallbackTitle(filePath: string): string {
   const projectDir = basename(dirname(filePath));
 
   let readable = projectDir
-    .replace(/^-home-rld-Work-/, "")
-    .replace(/^-home-rld-/, "")
+    .replace(/^-home-[^-]+-Work-/, "")
+    .replace(/^-home-[^-]+-/, "")
     .replace(/-/g, "/");
 
   if (!readable || readable === "/") {

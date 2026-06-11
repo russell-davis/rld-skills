@@ -11,7 +11,7 @@ function userLine(content: string | object[], ts = "2026-02-20T14:00:00Z") {
     timestamp: ts,
     sessionId: "test",
     uuid: "u1",
-    cwd: "/home/rld/Work/test",
+    cwd: "/home/user/Work/test",
     gitBranch: "main",
   });
 }
