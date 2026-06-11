@@ -70,7 +70,7 @@ Detect the project context and choose the right target:
 
 - **No repo / early stage** → Write issues as markdown files in `.issues/`, one per slice. Create the directory if it doesn't exist.
 - **GitHub remote** → Create issues with `gh issue create` in dependency order (blockers first) so you can reference real issue numbers.
-- **Other tracker** (Azure DevOps, Linear, etc.) → Write local files and let the user decide how to file them, or use the tracker's CLI if available (e.g., `moas` for MOAS/ADO).
+- **Other tracker** (Azure DevOps, Linear, etc.) → Write local files and let the user decide how to file them, or use the tracker's CLI if one is available.
 
 Ask the user if the default doesn't fit.
 
